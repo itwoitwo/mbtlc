@@ -15,8 +15,8 @@
                 </div>
 
                 <div class="form-group">
-                    {!! Form::label('login-id', 'ログインID') !!}
-                    {!! Form::email('email', old('email'), ['class' => 'form-control']) !!}
+                    {!! Form::label('login_id', 'ログインID') !!}
+                    {!! Form::text('login_id', old('login_id'), ['class' => 'form-control']) !!}
                 </div>
 
                 <div class="form-group">
