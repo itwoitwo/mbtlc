@@ -10,8 +10,8 @@
 
             {!! Form::open(['route' => 'login.post']) !!}
                 <div class="form-group">
-                    {!! Form::label('login-id', 'ログインID') !!}
-                    {!! Form::login_id('login_id', old('login_id'), ['class' => 'form-control']) !!}
+                    {!! Form::label('login_id', 'ログインID') !!}
+                    {!! Form::text('login_id', old('login_id'), ['class' => 'form-control']) !!}
                 </div>
 
                 <div class="form-group">
