@@ -19,7 +19,7 @@
                     'ロア' => 'ミハイル・ロア・バルダムヨォン',
                     ],'' ,['class' => 'form-control']) !!}
             </div>
-            <div class="col-md-2 mb-">
+            <div class="col-md-2 mb-2">
                 {!! Form::select('version', ['1.00' => 'Ver. 1.00', '1.01' => 'Ver. 1.01'],'1.01' ,['class' => 'form-control']) !!}
             </div>
         </div>
@@ -44,9 +44,12 @@
                     'その他' => 'その他',
                     ],'' ,['class' => 'form-control']) !!}
             </div>
-            <div class="custom-control custom-checkbox custom-control-inline-block mt-2 ml-3">
-                {{Form::checkbox('counter_hit', True, False, ['class'=>'custom-control-input','id'=>'counter_hit'])}}
-                {{Form::label('counter_hit', 'カウンターヒット',['class'=>'custom-control-label', 'for' => 'counter_hit'])}}
+            <div class="col-md-2 mb-2">
+                {!! Form::select('counter_hit', [
+                    'normal' => 'ノーマルヒット',
+                    'counter' => 'カウンター限定',
+                    'fatal' => 'フェイタル限定',
+                    ],'normal' ,['class' => 'form-control']) !!}
             </div>
         </div>
         <div class="form-group row">
