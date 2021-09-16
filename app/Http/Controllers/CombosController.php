@@ -37,7 +37,7 @@ class CombosController extends Controller
             '状況' => 'required|string|max:8|',
             'magic_circuit' => 'required|integer|',
             'moon' => 'required|integer|',
-            'コンボレシピ' => 'required|string|max:191|min:5|regex:/>/|',
+            'コンボレシピ' => 'required|string|max:191|min:5|regex:/.>.+>/|',
             'explain' => 'string|max:191|nullable',
             'video' => 'string|max:191|nullable',
         ]);
