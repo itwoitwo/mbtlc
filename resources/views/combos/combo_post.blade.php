@@ -5,7 +5,7 @@
     <div class="form-group">
         <div class="form-group row">
             <div class="col-md-6 mb-2">
-                {!! Form::select('fighter', [
+                {!! Form::select('キャラクター', [
                     '' => 'キャラクターを選択',
                     '遠野志貴' => '遠野志貴',
                     'アルクェイド' => 'アルクェイド・ブリュンスタッド',
@@ -25,7 +25,7 @@
         </div>
         <div class="form-group row">
             <div class="col-md-3 mb-2">
-                {!! Form::select('place', [
+                {!! Form::select('状況', [
                     '' => '状況',
                     'どこでも' => 'どこでも',
                     '中央限定' => '中央限定',
@@ -35,7 +35,7 @@
                     ],'' ,['class' => 'form-control']) !!}
             </div>                
             <div class="col-md-3 mb-2">
-                {!! Form::select('starting', [
+                {!! Form::select('始動技', [
                     '' => '始動技を選択',
                     'A系統' => 'A系統',
                     'B系統' => 'B系統',
@@ -46,7 +46,7 @@
             </div>
             <div class="custom-control custom-checkbox custom-control-inline-block mt-2 ml-3">
                 {{Form::checkbox('counter_hit', True, False, ['class'=>'custom-control-input','id'=>'counter_hit'])}}
-                {{Form::label('counter_hit','カウンターヒット',['class'=>'custom-control-label', 'for' => 'counter_hit'])}}
+                {{Form::label('counter_hit', 'カウンターヒット',['class'=>'custom-control-label', 'for' => 'counter_hit'])}}
             </div>
         </div>
         <div class="form-group row">
@@ -76,8 +76,8 @@
             </div>
         </div>
         <div class="form-group mb-2">
-            {!! Form::label('recipe', 'コンボレシピ') !!}
-            {!! Form::textarea('recipe', old('recipe'), ['class' => 'form-control', 'rows' => '2']) !!}
+            {!! Form::label('コンボレシピ', 'コンボレシピ') !!}
+            {!! Form::textarea('コンボレシピ', old('コンボレシピ'), ['class' => 'form-control', 'rows' => '2']) !!}
         </div>
         <div class="form-group mb-4">
             {!! Form::label('explain', '備考') !!}

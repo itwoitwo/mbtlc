@@ -29,32 +29,47 @@ class CombosController extends Controller
     public function store(Request $request)
     {   
         $this->validate($request, [
-            'fighter' => 'required',
+            'キャラクター' => 'required|string|',
             'damage' => 'integer|nullable',
             'version' => 'required|string|',
-            'starting' => 'required|string|',
+            '始動技' => 'required|string|',
             'counter_hit' => 'boolean|nullable|',
-            'place' => 'required|string|max:8|',
+            '状況' => 'required|string|max:8|',
             'magic_circuit' => 'integer',
             'moon' => 'integer',
-            'recipe' => 'required|string|max:191|',
+            'コンボレシピ' => 'required|string|max:191|min:5|',
             'explain' => 'string|max:191|nullable',
             'video' => 'string|max:191|nullable',
         ]);
 
-        $request->user()->combos()->create([
-            'fighter' => $request->fighter,
-            'damage' => $request->damage,
-            'version' => $request->version,
-            'starting' => $request->starting,
-            'counter_hit' => $request->counter_hit,
-            'place' => $request->place,
-            'magic_circuit' => $request->magic_circuit,
-            'moon' => $request->moon,
-            'recipe' => $request->recipe,
-            'explain' => $request->explain,
-            'video' => $request->video,
-        ]);
+        if (isset($request->counter_hit)){
+            $request->user()->combos()->create([
+                'fighter' => $request->キャラクター,
+                'damage' => $request->damage,
+                'version' => $request->version,
+                'starting' => $request->始動技,
+                'counter_hit' =>$request->counter_hit,
+                'place' => $request->状況,
+                'magic_circuit' => $request->magic_circuit,
+                'moon' => $request->moon,
+                'recipe' => $request->コンボレシピ,
+                'explain' => $request->explain,
+                'video' => $request->video,
+            ]);
+        }else{
+            $request->user()->combos()->create([
+                'fighter' => $request->キャラクター,
+                'damage' => $request->damage,
+                'version' => $request->version,
+                'starting' => $request->始動技,
+                'place' => $request->状況,
+                'magic_circuit' => $request->magic_circuit,
+                'moon' => $request->moon,
+                'recipe' => $request->コンボレシピ,
+                'explain' => $request->explain,
+                'video' => $request->video,
+            ]);
+        }
 
         return back();
     }
