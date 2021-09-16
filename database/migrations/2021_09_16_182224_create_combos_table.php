@@ -24,6 +24,7 @@ class CreateCombosTable extends Migration
             $table->integer('favorite_count')->default(0);
             $table->integer('adoption_count')->default(0);
             $table->string('starting');
+            $table->boolean('counter_hit')->default(False);
             $table->string('place')->default('どこでも');
             $table->integer('magic_circuit')->default(0);
             $table->integer('moon')->default(0);
