@@ -30,16 +30,16 @@ class CombosController extends Controller
     {   
         $this->validate($request, [
             'fighter' => 'required',
-            'damage' => 'integer',
+            'damage' => 'integer|nullable',
             'version' => 'required|string|',
             'starting' => 'required|string|',
-            'counter_hit' => 'required|boolean|',
+            'counter_hit' => 'boolean|nullable|',
             'place' => 'required|string|max:8|',
             'magic_circuit' => 'integer',
             'moon' => 'integer',
             'recipe' => 'required|string|max:191|',
-            'explain' => 'string|max:191|',
-            'video' => 'string|max:191|',
+            'explain' => 'string|max:191|nullable',
+            'video' => 'string|max:191|nullable',
         ]);
 
         $request->user()->combos()->create([

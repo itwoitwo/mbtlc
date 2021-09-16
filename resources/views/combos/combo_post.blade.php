@@ -44,38 +44,51 @@
                     'その他' => 'その他',
                     ],'' ,['class' => 'form-control']) !!}
             </div>
-            <div class="custom-control custom-checkbox custom-control-inline">
-                {{Form::checkbox('counter_hit', 'カウンターヒット', false, ['class'=>'custom-control-input','id'=>'counter_hit', ])}}
-                {{Form::label('counter_hit','カウンターヒット',['class'=>'custom-control-label mt-2'])}}
+            <div class="custom-control custom-checkbox custom-control-inline-block mt-2 ml-3">
+                {{Form::checkbox('counter_hit', True, False, ['class'=>'custom-control-input','id'=>'counter_hit'])}}
+                {{Form::label('counter_hit','カウンターヒット',['class'=>'custom-control-label', 'for' => 'counter_hit'])}}
             </div>
-            <div class="col-md- mb-2 offset-2">
+        </div>
+        <div class="form-group row">
+            <div class="form-group col-md-3 mb-2">
+                {!! Form::label('magic_circuit', 'マジックサーキット') !!}
+                {!! Form::select('magic_circuit', [
+                    0 => 'ノーゲージ可',
+                    1 => '1本',
+                    2 => '2本',
+                    3 => '3本',
+                    4 => '4本',
+                    ],'' ,['class' => 'form-control']) !!}
+            </div>
+            <div class="form-group col-md-3 mb-2">
+                {!! Form::label('moon', 'ムーンアイコン') !!}
+                {!! Form::select('moon', [
+                    0 => 'ノーゲージ可',
+                    1 => '1本',
+                    2 => '2本',
+                    3 => '3本',
+                    10 => 'ムーンドライブ発動',
+                    ],'' ,['class' => 'form-control']) !!}
+            </div>
+            <div class="form-group col-md-2">
+                {!! Form::label('damage', '　') !!}
                 {!! Form::text('damage', old('damage'), ['class' => 'form-control','placeholder' => 'ダメージを入力']) !!}
             </div>
         </div>
-
-
-        {!! Form::label('magic_circuit', 'マジックサーキット') !!}
-        {!! Form::select('magic_circuit', [
-            0 => 'ノーゲージ可',
-            1 => '1本',
-            2 => '2本',
-            3 => '3本',
-            4 => '4本',
-            ],'' ,['class' => 'form-control']) !!}
-        {!! Form::label('moon', 'ムーンアイコン') !!}
-        {!! Form::select('moon', [
-            0 => 'ノーゲージ可',
-            1 => '1本',
-            2 => '2本',
-            3 => '3本',
-            10 => 'ムーンドライブ発動',
-            ],'' ,['class' => 'form-control']) !!}
-        {!! Form::label('recipe', 'コンボレシピ') !!}
-        {!! Form::textarea('recipe', old('recipe'), ['class' => 'form-control', 'rows' => '2']) !!}
-        {!! Form::label('explain', '備考') !!}
-        {!! Form::textarea('explain', old('explain'), ['class' => 'form-control', 'rows' => '2']) !!}
-        {!! Form::text('video', old('video'), ['class' => 'form-control', 'placeholder' => '動画URL']) !!}
-        {!! Form::submit('Post', ['class' => 'btn btn-primary btn-block']) !!}
+        <div class="form-group mb-2">
+            {!! Form::label('recipe', 'コンボレシピ') !!}
+            {!! Form::textarea('recipe', old('recipe'), ['class' => 'form-control', 'rows' => '2']) !!}
+        </div>
+        <div class="form-group mb-4">
+            {!! Form::label('explain', '備考') !!}
+            {!! Form::textarea('explain', old('explain'), ['class' => 'form-control', 'rows' => '2']) !!}
+        </div>
+        <div class="mb-2">
+            {!! Form::text('video', old('video'), ['class' => 'form-control', 'placeholder' => '動画URL']) !!}
+        </div>
+        <div>
+            {!! Form::submit('投稿する', ['class' => 'col-md-4 mt-5 btn-lg btn-primary btn-block mx-auto']) !!}
+        </div>
     </div>
 {!! Form::close() !!}
 @endsection

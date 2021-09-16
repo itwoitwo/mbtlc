@@ -15,6 +15,7 @@ class Combo extends Model
         'favorite_count',
         'adoption_count',
         'starting',
+        'counter_hit',
         'place',
         'magic_circuit',
         'moon',
