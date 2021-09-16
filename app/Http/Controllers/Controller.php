@@ -10,4 +10,12 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+
+    public function counts($user) {
+        $count_combos = $user->combos()->count();
+
+        return [
+            'count_combos' => $count_combos,
+        ];
+    }
 }

@@ -15,5 +15,10 @@
                 <li class="nav-item"><a href="#" class="nav-link">気になるコンボ</a></li>
             </ul>
         </div>
+        <div class="col-sm-8">
+            @if (count($combos) > 0)
+                @include('combos.combos', ['combos' => $combos])
+            @endif
+        </div>
     </div>
 @endsection
