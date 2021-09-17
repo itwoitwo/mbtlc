@@ -67,4 +67,40 @@ class User extends Authenticatable
     {
         return $this->favorites()->where('combo_id', $comboId)->exists();
     }
+    
+    public function adopts()
+    {
+        return $this->belongsToMany(Combo::class, 'adopts', 'user_id', 'combo_id')->withTimestamps();
+    }
+
+    public function adopt($comboId)
+    {
+        //既にお気に入りかどうかの確認
+        $exist = $this->is_adopting($comboId);
+        
+        if($exist){
+            return false;
+        } else {
+            $this->adopts()->attach($comboId);
+            return true;
+        }
+    }
+
+    public function unadopt($comboId)
+    {
+        //既にお気に入りかどうかの確認
+        $exist = $this->is_adopting($comboId);
+        
+        if($exist){
+            $this->adopts()->detach($comboId);
+        } else {
+            return false;
+        }
+    }
+    
+    public function is_adopting($comboId)
+    {
+        return $this->adopts()->where('combo_id', $comboId)->exists();
+    }
+
 }

@@ -37,4 +37,19 @@ class UsersController extends Controller
         
         return view('users.favorites', $data);
     }
+
+    public function adopts($id)
+    {
+        $user = User::find($id);
+        $adopts = $user->adopts()->paginate(10);
+        
+        $data = [
+            'user' =>$user,
+            'adopts' => $adopts,
+            ];
+            
+        $data += $this->counts($user);
+        
+        return view('users.adopts', $data);
+    }
 }
