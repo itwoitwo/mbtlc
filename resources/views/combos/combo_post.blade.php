@@ -20,7 +20,7 @@
                     'ヴローヴ' => 'ヴローヴ・アルハンゲリ',
                     ],'' ,['class' => 'form-control']) !!}
             </div>
-            <div class="col-md-2 mb-2">
+            <div class="col-md-3 mb-2">
                 {!! Form::select('version', ['1.00' => 'Ver. 1.00', '1.01' => 'Ver. 1.01'],'1.01' ,['class' => 'form-control']) !!}
             </div>
         </div>
@@ -45,12 +45,12 @@
                     'その他' => 'その他',
                     ],'' ,['class' => 'form-control']) !!}
             </div>
-            <div class="col-md-2 mb-2">
+            <div class="col-md-3 mb-2">
                 {!! Form::select('counter_hit', [
-                    'normal' => 'ノーマルヒット',
-                    'counter' => 'カウンター限定',
-                    'fatal' => 'フェイタル限定',
-                    ],'normal' ,['class' => 'form-control']) !!}
+                    'ノーマルヒット' => 'ノーマルヒット',
+                    'カウンター限定' => 'カウンター限定',
+                    'フェイタル限定' => 'フェイタル限定',
+                    ],'ノーマルヒット' ,['class' => 'form-control']) !!}
             </div>
         </div>
         <div class="form-group row">
@@ -74,7 +74,7 @@
                     10 => 'ムーンドライブ発動',
                     ],'' ,['class' => 'form-control']) !!}
             </div>
-            <div class="form-group col-md-2">
+            <div class="form-group col-md-3">
                 {!! Form::label('damage', '　') !!}
                 {!! Form::text('damage', old('damage'), ['class' => 'form-control','placeholder' => 'ダメージを入力']) !!}
             </div>

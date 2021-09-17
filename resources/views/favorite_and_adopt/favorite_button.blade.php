@@ -1,11 +1,9 @@
-@if (Auth::id() != $user->id)
-    @if (Auth::user()->is_favoring($user->id))
-        {!! Form::open(['route' => ['user.unfavorite', $user->id], 'method' => 'delete']) !!}
-            {!! Form::submit('Unfavorite', ['class' => "btn btn-danger btn-block"]) !!}
-        {!! Form::close() !!}
-    @else
-        {!! Form::open(['route' => ['user.favorites', $user->id]]) !!}
-            {!! Form::submit('Favorite', ['class' => "btn btn-primary btn-block"]) !!}
-        {!! Form::close() !!}
-    @endif
+@if (Auth::user()->is_favoring($combo->id))
+{!! Form::open(['route' => ['favorites.unfavorite', $combo->id], 'method' => 'delete']) !!}
+        {!! Form::submit('Unfavorite', ['class' => 'btn btn-danger btn-sm']) !!}
+    {!! Form::close() !!}
+@else
+{!! Form::open(['route' => ['favorites.favorite', $combo->id], 'method' => 'post']) !!}
+        {!! Form::submit('Favorite', ['class' => 'btn btn-success btn-sm']) !!}
+    {!! Form::close() !!}
 @endif
