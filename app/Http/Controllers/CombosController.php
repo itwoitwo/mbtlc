@@ -42,7 +42,6 @@ class CombosController extends Controller
             'video' => 'string|max:191|nullable',
         ]);
 
-        if (isset($request->counter_hit)){
             $request->user()->combos()->create([
                 'fighter' => $request->キャラクター,
                 'damage' => $request->damage,
@@ -56,21 +55,7 @@ class CombosController extends Controller
                 'explain' => $request->explain,
                 'video' => $request->video,
             ]);
-        }else{
-            $request->user()->combos()->create([
-                'fighter' => $request->キャラクター,
-                'damage' => $request->damage,
-                'version' => $request->version,
-                'starting' => $request->始動技,
-                'place' => $request->状況,
-                'magic_circuit' => $request->magic_circuit,
-                'moon' => $request->moon,
-                'recipe' => $request->コンボレシピ,
-                'explain' => $request->explain,
-                'video' => $request->video,
-            ]);
-        }
-
+        
         return back();
     }
 
