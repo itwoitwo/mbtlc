@@ -8,14 +8,26 @@
                 <div>
                     <p class="mb-0">{!! nl2br(e($combo->recipe)) !!}</p>
                 </div>
-                <div>
-                    @if (Auth::id() == $combo->user_id)
-                        {!! Form::open(['route' => ['combos.destroy', $combo->id], 'method' => 'delete']) !!}
-                            {!! Form::submit('Delete', ['class' => 'btn btn-danger btn-sm']) !!}
-                        {!! Form::close() !!}
-                    @endif
+                <div class="d-flex">
+                    <div>
+                        @if (Auth::user()->is_favoring($combo->id))
+                            {!! Form::open(['route' => ['favorites.unfavorite', $combo->id], 'method' => 'delete']) !!}
+                                    {!! Form::submit('Unfavorite', ['class' => 'btn btn-danger btn-sm']) !!}
+                                {!! Form::close() !!}
+                        @else
+                            {!! Form::open(['route' => ['favorites.favorite', $combo->id], 'method' => 'post']) !!}
+                                    {!! Form::submit('Favorite', ['class' => 'btn btn-success btn-sm']) !!}
+                                {!! Form::close() !!}
+                        @endif
+                    </div>
+                    <div>
+                        @if (Auth::id() == $combo->user_id)
+                            {!! Form::open(['route' => ['combos.destroy', $combo->id], 'method' => 'delete']) !!}
+                                {!! Form::submit('Delete', ['class' => 'btn btn-danger btn-sm']) !!}
+                            {!! Form::close() !!}
+                        @endif
+                    </div>
                 </div>
-            </div>
         </li>
     @endforeach
 </ul>

@@ -22,3 +22,12 @@ Route::resource('users', 'UsersController', ['only' => ['show']]);
 
 Route::resource('combos', 'CombosController', ['only' => ['store', 'destroy']]);
 Route::get('combo_post', 'CombosController@combo_post')->name('combo_post');
+
+Route::group(['prefix' => 'users/{id}'], function () {
+    Route::get('favorites', 'UsersController@favorites')->name('users.favorites');
+});
+
+Route::group(['prefix' => 'combos/{id}'], function () {
+    Route::post('favorite', 'FavoritesController@store')->name('favorites.favorite');
+    Route::delete('unfavorite', 'FavoritesController@destroy')->name('favorites.unfavorite');
+});

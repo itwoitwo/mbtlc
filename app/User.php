@@ -32,4 +32,39 @@ class User extends Authenticatable
     {
         return $this->hasMany(Combo::class);
     }
+
+    public function favorites()
+    {
+        return $this->belongsToMany(Combo::class, 'favorites', 'user_id', 'combo_id')->withTimestamps();
+    }
+
+    public function favorite($comboId)
+    {
+        //既にお気に入りかどうかの確認
+        $exist = $this->is_favoring($comboId);
+        
+        if($exist){
+            return false;
+        } else {
+            $this->favorites()->attach($comboId);
+            return true;
+        }
+    }
+
+    public function unfavorite($comboId)
+    {
+        //既にお気に入りかどうかの確認
+        $exist = $this->is_favoring($comboId);
+        
+        if($exist){
+            $this->favorites()->detach($comboId);
+        } else {
+            return false;
+        }
+    }
+    
+    public function is_favoring($comboId)
+    {
+        return $this->favorites()->where('combo_id', $comboId)->exists();
+    }
 }
