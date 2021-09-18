@@ -2,6 +2,8 @@
 
 @section('content')
 @include('combos.combo_annotation')
+<br />
+<br />
 {!! Form::open(['route' => 'combos.store']) !!}
     <div class="form-group">
         <div class="form-group row">

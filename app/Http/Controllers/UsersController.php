@@ -11,15 +11,19 @@ class UsersController extends Controller
     {
         $user = User::find($id);
         $combos = $user->combos()->orderBy('created_at', 'desc')->paginate(10);
+        $favorites = $user->favorites()->paginate(10);
+        $adopts = $user->adopts()->paginate(10);
 
         $data = [
             'user' => $user,
             'combos' => $combos,
+            'favorites' => $favorites,
+            'adopts' => $adopts,
         ];
 
         $data += $this->counts($user);
         
-
+        
         return view('users.show', $data);
     }
 
