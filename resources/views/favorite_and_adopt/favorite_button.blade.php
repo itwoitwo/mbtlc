@@ -1,9 +1,9 @@
 @if (Auth::user()->is_favoring($combo->id))
 {!! Form::open(['route' => ['favorites.unfavorite', $combo->id], 'method' => 'delete']) !!}
-        {!! Form::submit('Unfavorite', ['class' => 'btn btn-danger btn-sm']) !!}
-    {!! Form::close() !!}
+    {!! Form::button('<i class="bi bi-star-fill text-warning"></i>お気に入り', ['class' => "btn", 'type' => 'submit']) !!}
+{!! Form::close() !!}
 @else
 {!! Form::open(['route' => ['favorites.favorite', $combo->id], 'method' => 'post']) !!}
-        {!! Form::submit('Favorite', ['class' => 'btn btn-success btn-sm']) !!}
-    {!! Form::close() !!}
+    {!! Form::button('<i class="bi bi-star text-warning"></i>お気に入り', ['class' => "btn", 'type' => 'submit']) !!}
+{!! Form::close() !!}
 @endif
