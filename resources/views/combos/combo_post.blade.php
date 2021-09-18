@@ -1,6 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
+@include('combos.combo_annotation')
+<br />
+<br />
 {!! Form::open(['route' => 'combos.store']) !!}
     <div class="form-group">
         <div class="form-group row">
@@ -20,7 +23,7 @@
                     'ヴローヴ' => 'ヴローヴ・アルハンゲリ',
                     ],'' ,['class' => 'form-control']) !!}
             </div>
-            <div class="col-md-2 mb-2">
+            <div class="col-md-3 mb-2">
                 {!! Form::select('version', ['1.00' => 'Ver. 1.00', '1.01' => 'Ver. 1.01'],'1.01' ,['class' => 'form-control']) !!}
             </div>
         </div>
@@ -45,12 +48,12 @@
                     'その他' => 'その他',
                     ],'' ,['class' => 'form-control']) !!}
             </div>
-            <div class="col-md-2 mb-2">
+            <div class="col-md-3 mb-2">
                 {!! Form::select('counter_hit', [
-                    'normal' => 'ノーマルヒット',
-                    'counter' => 'カウンター限定',
-                    'fatal' => 'フェイタル限定',
-                    ],'normal' ,['class' => 'form-control']) !!}
+                    'ノーマルヒット' => 'ノーマルヒット',
+                    'カウンター限定' => 'カウンター限定',
+                    'フェイタル限定' => 'フェイタル限定',
+                    ],'ノーマルヒット' ,['class' => 'form-control']) !!}
             </div>
         </div>
         <div class="form-group row">
@@ -65,16 +68,16 @@
                     ],'' ,['class' => 'form-control']) !!}
             </div>
             <div class="form-group col-md-3 mb-2">
-                {!! Form::label('moon', 'ムーンアイコン') !!}
+                <i class="fas fa-moon fa-flip-horizontal text-warning"></i> {!! Form::label('moon', 'ムーンアイコン') !!}
                 {!! Form::select('moon', [
                     0 => 'ノーゲージ可',
-                    1 => '1本',
-                    2 => '2本',
-                    3 => '3本',
+                    1 => '1カウント',
+                    2 => '2カウント',
+                    3 => '3カウント',
                     10 => 'ムーンドライブ発動',
                     ],'' ,['class' => 'form-control']) !!}
             </div>
-            <div class="form-group col-md-2">
+            <div class="form-group col-md-3">
                 {!! Form::label('damage', '　') !!}
                 {!! Form::text('damage', old('damage'), ['class' => 'form-control','placeholder' => 'ダメージを入力']) !!}
             </div>
@@ -84,11 +87,11 @@
             {!! Form::textarea('コンボレシピ', old('コンボレシピ'), ['class' => 'form-control', 'rows' => '2']) !!}
         </div>
         <div class="form-group mb-4">
-            {!! Form::label('explain', '備考') !!}
+            {!! Form::label('explain', '備考（特殊な条件やコツなど）　※備考、動画は空欄可') !!}
             {!! Form::textarea('explain', old('explain'), ['class' => 'form-control', 'rows' => '2']) !!}
         </div>
         <div class="mb-2">
-            {!! Form::text('video', old('video'), ['class' => 'form-control', 'placeholder' => '動画URL']) !!}
+            {!! Form::text('動画', old('動画'), ['class' => 'form-control', 'placeholder' => '動画URL']) !!}
         </div>
         <div>
             {!! Form::submit('投稿する', ['class' => 'col-md-4 mt-5 btn-lg btn-primary btn-block mx-auto']) !!}
