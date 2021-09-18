@@ -40,10 +40,10 @@
             <div class="card-hooter mt-0 pt-0 border-bottom">
                 <div class="button-group mt-0 pt-0">
                     <div class="btn mt-0 pt-0">
-                        @include("favorite_and_adopt.favorite_button")
+                        @include("favorite_and_adopt.adopt_button")
                     </div>
                     <div class="btn mt-0 pt-0">
-                        @include("favorite_and_adopt.adopt_button")
+                        @include("favorite_and_adopt.favorite_button")
                     </div>
                     <div class="btn mt-0 pt-0">
                         @include("combos.combos_delete_button", ['user' => $user])

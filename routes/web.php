@@ -25,18 +25,14 @@ Route::get('combo_post', 'CombosController@combo_post')->name('combo_post');
 
 Route::group(['prefix' => 'users/{id}'], function () {
     Route::get('favorites', 'UsersController@favorites')->name('users.favorites');
+    Route::get('adopts', 'UsersController@adopts')->name('users.adopts');
+    Route::get('favorites_index', 'UsersController@favorites_index')->name('users.favorites_index');
+    Route::get('mycombos', 'UsersController@mycombos')->name('users.mycombos');
 });
 
 Route::group(['prefix' => 'combos/{id}'], function () {
     Route::post('favorite', 'FavoritesController@store')->name('favorites.favorite');
     Route::delete('unfavorite', 'FavoritesController@destroy')->name('favorites.unfavorite');
-});
-
-Route::group(['prefix' => 'users/{id}'], function () {
-    Route::get('adopts', 'UsersController@adopts')->name('users.adopts');
-});
-
-Route::group(['prefix' => 'combos/{id}'], function () {
     Route::post('adopt', 'AdoptsController@store')->name('adopts.adopt');
     Route::delete('unadopt', 'AdoptsController@destroy')->name('adopts.unadopt');
 });

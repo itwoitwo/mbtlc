@@ -10,14 +10,10 @@ class UsersController extends Controller
     public function show($id)
     {
         $user = User::find($id);
-        $combos = $user->combos()->orderBy('created_at', 'desc')->paginate(10);
-        $favorites = $user->favorites()->paginate(10);
-        $adopts = $user->adopts()->paginate(10);
+        $adopts = $user->adopts()->orderBy('created_at', 'desc')->paginate(10);
 
         $data = [
             'user' => $user,
-            'combos' => $combos,
-            'favorites' => $favorites,
             'adopts' => $adopts,
         ];
 
@@ -30,7 +26,7 @@ class UsersController extends Controller
     public function favorites($id)
     {
         $user = User::find($id);
-        $favorites = $user->favorites()->paginate(10);
+        $favorites = $user->favorites();
         
         $data = [
             'user' =>$user,
@@ -45,7 +41,7 @@ class UsersController extends Controller
     public function adopts($id)
     {
         $user = User::find($id);
-        $adopts = $user->adopts()->paginate(10);
+        $adopts = $user->adopts();
         
         $data = [
             'user' =>$user,
@@ -55,5 +51,31 @@ class UsersController extends Controller
         $data += $this->counts($user);
         
         return view('users.adopts', $data);
+    }
+
+    public function favorites_index($id){
+
+        $user = User::find($id);
+        $favorites = $user->favorites()->orderBy('created_at', 'desc')->paginate(10);
+
+        $data = [
+            'user' =>$user,
+            'favorites' => $favorites,
+            ];
+
+        return view('users.favorites_index', $data);
+    }
+
+    public function mycombos($id){
+
+        $user = User::find($id);
+        $mycombos = $user->combos()->orderBy('created_at', 'desc')->paginate(10);
+
+        $data = [
+            'user' => $user,
+            'mycombos' => $mycombos,
+        ];
+
+        return view('users.mycombos', $data);
     }
 }
