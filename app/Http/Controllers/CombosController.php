@@ -38,24 +38,24 @@ class CombosController extends Controller
             'magic_circuit' => 'required|integer|',
             'moon' => 'required|integer|',
             'コンボレシピ' => 'required|string|max:191|min:5|regex:/.>.+>/|',
-            'explain' => 'string|max:191|nullable',
-            'video' => 'string|max:191|nullable',
+            'explain' => 'string|max:191|nullable|',
+            '動画' => 'string|max:191|nullable|regex:/(https?:\/\/(www\.)?[0-9a-z\-\.]+:?[0-9]{0,5})/|',
         ]);
 
-            $request->user()->combos()->create([
-                'fighter' => $request->キャラクター,
-                'damage' => $request->damage,
-                'version' => $request->version,
-                'starting' => $request->始動技,
-                'counter_hit' =>$request->counter_hit,
-                'place' => $request->状況,
-                'magic_circuit' => $request->magic_circuit,
-                'moon' => $request->moon,
-                'recipe' => $request->コンボレシピ,
-                'explain' => $request->explain,
-                'video' => $request->video,
-            ]);
-        
+        $request->user()->combos()->create([
+            'fighter' => $request->キャラクター,
+            'damage' => $request->damage,
+            'version' => $request->version,
+            'starting' => $request->始動技,
+            'counter_hit' =>$request->counter_hit,
+            'place' => $request->状況,
+            'magic_circuit' => $request->magic_circuit,
+            'moon' => $request->moon,
+            'recipe' => $request->コンボレシピ,
+            'explain' => $request->explain,
+            'video' => $request->動画,
+        ]);
+    
         return back();
     }
 

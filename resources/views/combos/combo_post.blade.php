@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+@include('combos.combo_annotation')
 {!! Form::open(['route' => 'combos.store']) !!}
     <div class="form-group">
         <div class="form-group row">
@@ -65,12 +66,12 @@
                     ],'' ,['class' => 'form-control']) !!}
             </div>
             <div class="form-group col-md-3 mb-2">
-                {!! Form::label('moon', 'ムーンアイコン') !!}
+                <i class="fas fa-moon fa-flip-horizontal text-warning"></i> {!! Form::label('moon', 'ムーンアイコン') !!}
                 {!! Form::select('moon', [
                     0 => 'ノーゲージ可',
-                    1 => '1本',
-                    2 => '2本',
-                    3 => '3本',
+                    1 => '1カウント',
+                    2 => '2カウント',
+                    3 => '3カウント',
                     10 => 'ムーンドライブ発動',
                     ],'' ,['class' => 'form-control']) !!}
             </div>
@@ -84,11 +85,11 @@
             {!! Form::textarea('コンボレシピ', old('コンボレシピ'), ['class' => 'form-control', 'rows' => '2']) !!}
         </div>
         <div class="form-group mb-4">
-            {!! Form::label('explain', '備考') !!}
+            {!! Form::label('explain', '備考（特殊な条件やコツなど）　※備考、動画は空欄可') !!}
             {!! Form::textarea('explain', old('explain'), ['class' => 'form-control', 'rows' => '2']) !!}
         </div>
         <div class="mb-2">
-            {!! Form::text('video', old('video'), ['class' => 'form-control', 'placeholder' => '動画URL']) !!}
+            {!! Form::text('動画', old('動画'), ['class' => 'form-control', 'placeholder' => '動画URL']) !!}
         </div>
         <div>
             {!! Form::submit('投稿する', ['class' => 'col-md-4 mt-5 btn-lg btn-primary btn-block mx-auto']) !!}

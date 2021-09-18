@@ -11,24 +11,7 @@
                 </div>
             </aside>
         </div>
-        <ul class="list-group list-group-horizontal">
-            <li class="list-group-item inline-block">An item</li>
-            <li class="list-group-item inline-block">A second item</li>
-            <li class="list-group-item">A third item</li>
-        </ul>
-        <div class="container">
-            <div class="row">
-              <div class="col-sm">
-                One of three columns
-              </div>
-              <div class="col-sm">
-                One of three columns
-              </div>
-              <div class="col-sm">
-                One of three columns
-              </div>
-            </div>
-          </div>
+        {{-- testarea --}}
     @else
         <div class="center jumbotron">
             <div class="text-center">
