@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Support\Facades\DB;
 use App\Combo;
 use App\User;
 
@@ -14,15 +15,13 @@ class CombosController extends Controller
 {
     public function index()
     {
-        $data = [];
-        if (\Auth::check()) {
-            $user = \Auth::user();
-            
-            $data = [
-                'user' => $user,
-            ];
-        }
-        
+        $combos = DB::table('combos')->orderBy('created_at', 'desc')->paginate(10);
+        $user = \Auth::user();
+        $data = [
+            'user' => $user,
+            'combos' => $combos,
+        ];
+
         return view('welcome', $data);
     }
 
@@ -61,7 +60,7 @@ class CombosController extends Controller
 
     public function destroy($id)
     {
-        $combo = \App\Combo::find($id);
+        $combo = Combo::find($id);
 
         if (\Auth::id() === $combo->user_id) {
             $combo->delete();
@@ -73,6 +72,58 @@ class CombosController extends Controller
     public function combo_post()
     {
         return view('combos.combo_post');
+    }
+
+    public function serch(Request $request)
+    {
+        $query = Combo::query();
+        $serch_fighter = $request->input('キャラクター');
+        $serch_ver = $request->input('version');
+        $serch_place = $request->input('状況');
+        $serch_starting = $request->input('始動技');
+        $serch_counter = $request->input('counter_hit');
+        $serch_magic = $request->input('magic_circuit');
+        $serch_moon = $request->input('moon');
+
+        if($request->has('キャラクター') && $serch_fighter != ''){
+            $query->where('fighter', $serch_fighter);
+        }
+
+        if($request->has('version') && $serch_ver != ''){
+            $query->where('version', $serch_ver);
+        }
+
+        if($request->has('状況') && $serch_place != ''){
+            $query->where('place', $serch_place);
+        }
+
+        if($request->has('始動技') && $serch_starting != ''){
+            $query->where('starting', $serch_starting);
+        }
+
+        if($serch_counter == 'カウンター限定'){
+            $query->where('counter_hit', 'フェイタル限定')->orWhere('counter_hit', $serch_counter);
+        }elseif($request->has('counter_hit') && $serch_counter != ''){
+            $query->where('counter_hit', $serch_counter);
+        }
+        
+        if($request->has('magic_circuit') && $serch_magic != ''){
+            $query->where('magic_circuit', $serch_magic);
+        }
+        
+        if($request->has('moon') && $serch_moon != ''){
+            $query->where('moon', $serch_moon);
+        }
+
+        $combos = $query->paginate(10);
+
+        $user = \Auth::user();
+        $data = [
+            'user' => $user,
+            'combos' => $combos,
+        ];
+
+        return view('welcome', $data);
     }
 
 }

@@ -38,19 +38,21 @@
                 {!! nl2br(e($combo->recipe)) !!}
             </div>
             <div class="card-hooter mt-0 pt-0 border-bottom">
-                <div class="button-group mt-0 pt-0">
-                    <div class="btn mt-0 pt-0">
-                        @include("favorite_and_adopt.adopt_button")
+                @if (Auth::check())
+                    <div class="button-group mt-0 pt-0">
+                        <div class="btn mt-0 pt-0">
+                            @include("favorite_and_adopt.adopt_button")
+                        </div>
+                        <div class="btn mt-0 pt-0">
+                            @include("favorite_and_adopt.favorite_button")
+                        </div>
+                        <div class="btn mt-0 pt-0">
+                            @include("combos.combos_delete_button", ['user' => $user])
+                        </div>
                     </div>
-                    <div class="btn mt-0 pt-0">
-                        @include("favorite_and_adopt.favorite_button")
-                    </div>
-                    <div class="btn mt-0 pt-0">
-                        @include("combos.combos_delete_button", ['user' => $user])
-                    </div>
-                </div>
+                @endif
             </div>
         </li>
     @endforeach
 </ul>
-{{ $combos->links('pagination::bootstrap-4') }}
+{{ $combos->appends(request()->input())->links('pagination::bootstrap-4') }}
