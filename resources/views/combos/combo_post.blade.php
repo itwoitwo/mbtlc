@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+
 @include('combos.combo_annotation')
 <br />
 <br />
@@ -78,8 +79,8 @@
                     ],'' ,['class' => 'form-control']) !!}
             </div>
             <div class="form-group col-md-3">
-                {!! Form::label('damage', '　') !!}
-                {!! Form::text('damage', old('damage'), ['class' => 'form-control','placeholder' => 'ダメージを入力']) !!}
+                {!! Form::label('ダメージ', '　') !!}
+                {!! Form::text('ダメージ', old('ダメージ'), ['class' => 'form-control','placeholder' => 'ダメージを入力']) !!}
             </div>
         </div>
         <div class="form-group mb-2">

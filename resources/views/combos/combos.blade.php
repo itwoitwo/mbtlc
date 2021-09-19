@@ -1,6 +1,8 @@
 <ul class="list-unstyled">
     <thead>
         <tr>
+            <td>@sortablelink('adoption_count', '採用数')
+            <td>@sortablelink('favorite_count', 'お気に入り数')
             <td>@sortablelink('damage', 'ダメージ')
             <td>@sortablelink('created_at', '作成日')
     </thead>

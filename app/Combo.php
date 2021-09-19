@@ -41,5 +41,5 @@ class Combo extends Model
     }
 
     use Sortable; // 追加
-    public $sortable = ['damage', 'created_at'];    
+    public $sortable = ['damage', 'created_at', 'favorite_count', 'adoption_count'];    
 }

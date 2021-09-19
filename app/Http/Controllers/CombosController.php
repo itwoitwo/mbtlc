@@ -30,7 +30,7 @@ class CombosController extends Controller
     {   
         $this->validate($request, [
             'キャラクター' => 'required|string|',
-            'damage' => 'integer|nullable',
+            'ダメージ' => 'integer|nullable|digits:4',
             'version' => 'required|string|',
             '始動技' => 'required|string|',
             'counter_hit' => 'required|string|',
@@ -44,7 +44,7 @@ class CombosController extends Controller
 
         $request->user()->combos()->create([
             'fighter' => $request->キャラクター,
-            'damage' => $request->damage,
+            'damage' => $request->ダメージ,
             'version' => $request->version,
             'starting' => $request->始動技,
             'counter_hit' =>$request->counter_hit,
@@ -56,7 +56,7 @@ class CombosController extends Controller
             'video' => $request->動画,
         ]);
     
-        return back();
+        return redirect()->route('adopts.adopts_index', ['id' => $request->user()->id])->with('is_after_complete', '完了しました');
     }
 
     public function destroy($id)

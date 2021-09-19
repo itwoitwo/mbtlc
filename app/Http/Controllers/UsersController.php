@@ -87,6 +87,6 @@ class UsersController extends Controller
             'platform' => $request->platform,
         ]);
 
-        return redirect()->route('adopts.adopts_index', ['id' => $request->user_id]);
+        return redirect()->route('adopts.adopts_index', ['id' => $request->user_id])->with('is_after_complete', '完了しました');
     }
 }   

@@ -3,8 +3,8 @@
         {{ $user->name }}
     </div>
     <div class="card-body pb-1">
-        <p>メイン:{{ $user->main_character }}</p>
-        <p>{{ $user->platform }}</p>
+        <p>メインキャラ:{{ $user->main_character }}</p>
+        <p>{!! nl2br(e($user->platform)) !!}</p>
     </div>
     @if (Auth::user()->id === $user->id)
     <div class="card-footer pb-1">
