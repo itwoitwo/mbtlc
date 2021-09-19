@@ -1,10 +1,4 @@
-@extends('layouts.app')
-
-@section('content')
-    @include('users.navtabs', ['user' => $user])
-    @include('combos.combos', ['combos' => $combos])
-    {!! Form::open(['method' => 'get','route' => ['adopts.adopts_serch', $user->id]]) !!}
-    {!!Form::hidden('user_id', $user->id) !!}
+{!! Form::open(['route' => 'combos.serch', 'method' => 'get']) !!}
     <div class="form-group">
         <div class="form-group row">
             <div class="col-md-6 mb-2">
@@ -86,6 +80,4 @@
             </div>
         </div>
     </div>
-    {!! Form::close() !!}
-    @include('combos.combo_annotation')
-@endsection
+{!! Form::close() !!}

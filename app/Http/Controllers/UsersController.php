@@ -10,11 +10,11 @@ class UsersController extends Controller
     public function show($id)
     {
         $user = User::find($id);
-        $adopts = $user->adopts()->orderBy('created_at', 'desc')->paginate(10);
+        $combos = $user->adopts()->orderBy('created_at', 'desc')->paginate(10);
 
         $data = [
             'user' => $user,
-            'adopts' => $adopts,
+            'combos' => $combos,
         ];
 
         $data += $this->counts($user);
@@ -38,29 +38,29 @@ class UsersController extends Controller
         return view('users.favorites', $data);
     }
 
-    public function adopts($id)
-    {
-        $user = User::find($id);
-        $adopts = $user->adopts();
+    // public function adopts($id)
+    // {
+    //     $user = User::find($id);
+    //     $adopts = $user->adopts();
         
-        $data = [
-            'user' =>$user,
-            'adopts' => $adopts,
-            ];
+    //     $data = [
+    //         'user' =>$user,
+    //         'adopts' => $adopts,
+    //         ];
             
-        $data += $this->counts($user);
+    //     $data += $this->counts($user);
         
-        return view('users.adopts', $data);
-    }
+    //     return view('users.adopts', $data);
+    // }
 
     public function favorites_index($id){
 
         $user = User::find($id);
-        $favorites = $user->favorites()->orderBy('created_at', 'desc')->paginate(10);
+        $combos = $user->favorites()->orderBy('created_at', 'desc')->paginate(10);
 
         $data = [
             'user' =>$user,
-            'favorites' => $favorites,
+            'combos' => $combos,
             ];
 
         return view('users.favorites_index', $data);
@@ -69,11 +69,11 @@ class UsersController extends Controller
     public function mycombos($id){
 
         $user = User::find($id);
-        $mycombos = $user->combos()->orderBy('created_at', 'desc')->paginate(10);
+        $combos = $user->combos()->orderBy('created_at', 'desc')->paginate(10);
 
         $data = [
             'user' => $user,
-            'mycombos' => $mycombos,
+            'combos' => $combos,
         ];
 
         return view('users.mycombos', $data);
