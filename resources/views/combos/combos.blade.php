@@ -10,6 +10,11 @@
         <li class="card mb-3 mt-2">
             <div class="card-header col-md">
                 {!! nl2br(e($combo->fighter)) !!} &nbsp; &nbsp; Ver. {!! nl2br(e($combo->version)) !!}
+                @if($combo->difficulty === 'easy')
+                <span class="col-md">
+                    <i class="fas fa-seedling text-success"></i>
+                </span>
+                @endif
             </div>
             <div class="row card-body py-1">
                 <div class="col-md">

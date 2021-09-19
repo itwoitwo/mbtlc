@@ -8,7 +8,7 @@
 {!! Form::open(['route' => 'combos.store']) !!}
     <div class="form-group">
         <div class="form-group row">
-            <div class="col-md-6 mb-2">
+            <div class="col-md-3 mb-2">
                 {!! Form::select('キャラクター', [
                     '' => 'キャラクターを選択',
                     '遠野志貴' => '遠野志貴',
@@ -26,6 +26,9 @@
             </div>
             <div class="col-md-3 mb-2">
                 {!! Form::select('version', ['1.00' => 'Ver. 1.00', '1.01' => 'Ver. 1.01'],'1.01' ,['class' => 'form-control']) !!}
+            </div>
+            <div class="col-md-3 mb-2">
+                {!! Form::select('コンボ難易度', ['' => 'コンボ難易度', 'easy' => '簡単！安定！', 'difficult' => '初心者向けではない'],'' ,['class' => 'form-control']) !!}
             </div>
         </div>
         <div class="form-group row">
@@ -79,7 +82,7 @@
                     ],'' ,['class' => 'form-control']) !!}
             </div>
             <div class="form-group col-md-3">
-                {!! Form::label('ダメージ', '　') !!}
+                {!! Form::label('ダメージ', 'ダメージ') !!}
                 {!! Form::text('ダメージ', old('ダメージ'), ['class' => 'form-control','placeholder' => 'ダメージを入力']) !!}
             </div>
         </div>
@@ -88,7 +91,13 @@
             {!! Form::textarea('コンボレシピ', old('コンボレシピ'), ['class' => 'form-control', 'rows' => '2']) !!}
         </div>
         <div class="form-group mb-4">
-            {!! Form::label('explain', '備考（特殊な条件やコツなど）　※備考、動画は空欄可') !!}
+            {!! Form::label('一言コメント', '一言コメント（「確反」「ヒット確認簡単」「対空始動」など。最大20文字。）') !!}
+            {!! Form::text('一言コメント', old('一言コメント'), ['class' => 'form-control']) !!}
+        </div>
+        <br />
+        <br />
+        <div class="form-group mb-4">
+            {!! Form::label('explain', '備考（特殊な条件やコツなど）　※ダメージ、備考、動画は空欄可') !!}
             {!! Form::textarea('explain', old('explain'), ['class' => 'form-control', 'rows' => '2']) !!}
         </div>
         <div class="mb-2">

@@ -23,6 +23,8 @@ class Combo extends Model
         'recipe',
         'explain',
         'video',
+        'difficulty',
+        'words',
     ];
 
     public function user()
