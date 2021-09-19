@@ -7,7 +7,7 @@ use App\User;
 
 class UsersController extends Controller
 {
-    public function show($id)
+    public function adopts_index($id)
     {
         $user = User::find($id);
         $combos = $user->adopts()->sortable()->orderBy('created_at', 'desc')->paginate(1);
@@ -87,6 +87,6 @@ class UsersController extends Controller
             'platform' => $request->platform,
         ]);
 
-        return redirect()->route('adopts.adopts_index', ['id' => $request->user_id])->with('is_after_complete', '完了しました');
+        return redirect()->route('users.adopts_index', ['id' => $request->user_id])->with('is_after_complete', '完了しました');
     }
 }   

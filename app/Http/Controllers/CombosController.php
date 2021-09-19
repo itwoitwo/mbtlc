@@ -23,7 +23,7 @@ class CombosController extends Controller
             'combos' => $combos,
         ];
 
-        return view('welcome', $data);
+        return view('combos.index', $data);
     }
 
     public function store(Request $request)
@@ -138,7 +138,7 @@ class CombosController extends Controller
             'combos' => $combos,
         ];
 
-        return view('welcome', $data);
+        return view('combos.index', $data);
     }
 
     public function adopts_serch(Request $request)
@@ -339,5 +339,15 @@ class CombosController extends Controller
         ];
 
         return view('users.mycombos', $data);
+    }
+
+    public function welcome()
+    {
+        return view('welcome');
+    }
+
+    public function about()
+    {
+        return view('commons.about');
     }
 }
