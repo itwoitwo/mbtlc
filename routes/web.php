@@ -28,6 +28,8 @@ Route::get('combo_post', 'CombosController@combo_post')->name('combo_post');
 
 Route::group(['prefix' => 'users/{id}'], function () {
     Route::get('/', 'UsersController@show')->name('adopts.adopts_index');
+    Route::get('edit','UsersController@edit')->name('users.edit');
+    Route::post('update', 'UsersController@update')->name('users.update');
     Route::get('favorites', 'UsersController@favorites')->name('users.favorites');
     Route::get('favorites_index', 'UsersController@favorites_index')->name('favorites.favorites_index');
     Route::get('mycombos', 'UsersController@mycombos')->name('mycombos.mycombos_index');

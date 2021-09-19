@@ -6,4 +6,6 @@
 
 @include('combos.combos')
 
+@include('combos.combo_annotation')
+
 @endsection

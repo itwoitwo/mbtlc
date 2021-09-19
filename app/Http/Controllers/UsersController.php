@@ -10,7 +10,7 @@ class UsersController extends Controller
     public function show($id)
     {
         $user = User::find($id);
-        $combos = $user->adopts()->orderBy('created_at', 'desc')->paginate(10);
+        $combos = $user->adopts()->sortable()->orderBy('created_at', 'desc')->paginate(1);
 
         $data = [
             'user' => $user,
@@ -38,25 +38,10 @@ class UsersController extends Controller
         return view('users.favorites', $data);
     }
 
-    // public function adopts($id)
-    // {
-    //     $user = User::find($id);
-    //     $adopts = $user->adopts();
-        
-    //     $data = [
-    //         'user' =>$user,
-    //         'adopts' => $adopts,
-    //         ];
-            
-    //     $data += $this->counts($user);
-        
-    //     return view('users.adopts', $data);
-    // }
-
     public function favorites_index($id){
 
         $user = User::find($id);
-        $combos = $user->favorites()->orderBy('created_at', 'desc')->paginate(10);
+        $combos = $user->favorites()->sortable()->orderBy('created_at', 'desc')->paginate(1);
 
         $data = [
             'user' =>$user,
@@ -69,7 +54,7 @@ class UsersController extends Controller
     public function mycombos($id){
 
         $user = User::find($id);
-        $combos = $user->combos()->orderBy('created_at', 'desc')->paginate(10);
+        $combos = $user->combos()->sortable()->orderBy('created_at', 'desc')->paginate(1);
 
         $data = [
             'user' => $user,
@@ -78,4 +63,30 @@ class UsersController extends Controller
 
         return view('users.mycombos', $data);
     }
-}
+
+    public function edit($id)
+    {   
+        $user = User::find($id);
+
+        $data = [
+            'user' => $user,
+        ];
+
+        return view('users.edit', $data);
+    }
+
+    public function update(Request $request)
+    {
+        $this->validate($request, [
+            'main_character' => 'required|string|',
+            'platform' => 'required|string|max:20|',
+        ]);
+        
+        User::find($request->user_id)->update([
+            'main_character' => $request->main_character,
+            'platform' => $request->platform,
+        ]);
+
+        return redirect()->route('adopts.adopts_index', ['id' => $request->user_id]);
+    }
+}   

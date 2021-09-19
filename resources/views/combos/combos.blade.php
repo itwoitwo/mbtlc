@@ -42,8 +42,8 @@
             <div class="card-body border-top border-bottom">
                 {!! nl2br(e($combo->recipe)) !!}
             </div>
-            <div class="card-hooter mt-0 pt-0 border-bottom">
-                @if (Auth::check())
+            @if (Auth::check())
+                <div class="mt-0 pt-0 border-bottom">
                     <div class="button-group mt-0 pt-0">
                         <div class="btn mt-0 pt-0">
                             @include("favorite_and_adopt.adopt_button")
@@ -55,8 +55,8 @@
                             @include("combos.combos_delete_button", ['user' => $user])
                         </div>
                     </div>
-                @endif
-            </div>
+                </div>
+            @endif
         </li>
     @endforeach
 </ul>

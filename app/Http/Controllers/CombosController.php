@@ -16,7 +16,7 @@ class CombosController extends Controller
     public function index()
     {
         $combos = Combo::all();
-        $combos = Combo::sortable()->paginate(1);
+        $combos = Combo::sortable()->orderBy('created_at', 'desc')->paginate(1);
         $user = \Auth::user();
         $data = [
             'user' => $user,
