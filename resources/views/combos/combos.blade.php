@@ -1,4 +1,9 @@
 <ul class="list-unstyled">
+    <thead>
+        <tr>
+            <td>@sortablelink('damage', 'ダメージ')
+            <td>@sortablelink('created_at', '作成日')
+    </thead>
     @foreach ($combos as $combo)
         <li class="card mb-3 mt-2">
             <div class="card-header col-md">
@@ -55,4 +60,4 @@
         </li>
     @endforeach
 </ul>
-{{ $combos->appends(request()->input())->links('pagination::bootstrap-4') }}
+{{ $combos->appends(request()->query())->links('pagination::bootstrap-4') }}

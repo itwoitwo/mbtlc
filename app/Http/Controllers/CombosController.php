@@ -15,7 +15,8 @@ class CombosController extends Controller
 {
     public function index()
     {
-        $combos = DB::table('combos')->orderBy('created_at', 'desc')->paginate(10);
+        $combos = Combo::all();
+        $combos = Combo::sortable()->paginate(1);
         $user = \Auth::user();
         $data = [
             'user' => $user,
@@ -115,7 +116,7 @@ class CombosController extends Controller
             $query->where('moon', $serch_moon);
         }
 
-        $combos = $query->paginate(10);
+        $combos = $query->sortable()->orderBy('created_at', 'desc')->paginate(1);
 
         $user = \Auth::user();
         $data = [
@@ -131,7 +132,7 @@ class CombosController extends Controller
         $query = Combo::query();
 
         $query->select('combos.*')->join('adopts', 'combos.id', '=', 'adopts.combo_id');
-        $query->where('adopts.user_id', '=', $request->user_id);
+        $query->sortable()->where('adopts.user_id', '=', $request->user_id);
 
         $serch_fighter = $request->input('キャラクター');
         $serch_ver = $request->input('version');

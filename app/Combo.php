@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App\User;
+use Kyslik\ColumnSortable\Sortable;
 
 class Combo extends Model
 {
@@ -38,4 +39,7 @@ class Combo extends Model
     {
         return $this->belongsToMany(User::class, 'adopts', 'combo_id', 'user_id')->withTimestamps();
     }
+
+    use Sortable; // 追加
+    public $sortable = ['damage', 'created_at'];    
 }
